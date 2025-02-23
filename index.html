@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Rickroll Prank</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: black;
+        height: 100%;
+        width: 100%;
+      }
+      #rickButton {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px 40px;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 10;
+      }
+      #rickVideo {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Button that triggers the video -->
+    <button id="rickButton" onclick="playRickroll()">Click Me!</button>
+
+    <!-- Local video file (ensure this file is in the same folder as your HTML file) -->
+    <video id="rickVideo" src="assets/buddy.mp4"></video>
+
+    <script>
+      function playRickroll() {
+        var button = document.getElementById("rickButton");
+        var video = document.getElementById("rickVideo");
+
+        // Hide the button
+        button.style.display = "none";
+
+        // Show the video element
+        video.style.display = "block";
+
+        // Set the volume to maximum (1.0 is the highest value)
+        video.volume = 1.0;
+
+        // Start playing the video
+        video.play();
+
+        // Request full screen mode (must be triggered by a user gesture)
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) {
+          /* Safari */
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) {
+          /* IE11 */
+          video.msRequestFullscreen();
+        }
+      }
+    </script>
+  </body>
+</html>
